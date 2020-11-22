@@ -1,0 +1,19 @@
+{% extends "weather/weather.html" %}
+{% block content %}
+    {% for city_weather in cities_weather %}
+        <div class="city" style="background-image: url({{ city_weather.photo }})">
+            <div class="widget-header">
+                <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="icon"/>
+                <a href="city?city={{ city_weather.city }}">
+                    <h3>{{ city_weather.city }}</h3>
+                </a>
+                <p class="temp">{{ city_weather.temperature }}°C</p>
+            </div>
+            <div class="widget-footer">
+                
+                <p class="desc">{{ city_weather.description }}</p>
+                <a class="delete-city" href="delete?city_name={{ city_weather.city }}"><i class="fas fa-trash-alt"></i></a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

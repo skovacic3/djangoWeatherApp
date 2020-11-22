@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}">
+    <script src="https://kit.fontawesome.com/58939ed405.js" crossorigin="anonymous"></script>
+    <title>WeatherApp</title>
+</head>
+<body>
+    <header><h1>WeatherApp</h1></header>
+    <div class="city-input">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.name }}
+            <button type="submit">Add</button>
+            {% if errors is not None %}
+                <span class="form-error">{{errors}}</span>
+            {% endif %}
+        </form>
+    </div>
+    <div class="cities">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}">
+        <script src="https://kit.fontawesome.com/58939ed405.js" crossorigin="anonymous"></script>
+        <title>WeatherApp - {{city_weather.city}}</title>
+    </head>
+    <body>
+        <div class="city-main">
+            <div class="city-header" style="background-image: url({{ city_weather.photo }})">
+                <a class="back-button" href="/"><i class="fas fa-angle-double-left"></i></a>
+                <h2>{{ city_weather.city }}</h2>
+                <p class="desc">{{ city_weather.description }}</p>
+            </div>
+            <div class="city-body">
+                <div class="temperature">
+                    <div class="title">
+                        <h2>Temperature <i class="fas fa-thermometer-three-quarters"></i></h2>
+                        
+                    </div>
+                    <div>
+                        <p>Current temperature</p>
+                        <p>{{ city_weather.temperature }}</p>
+                    </div>
+                    <div>
+                        <p>Feels like</p>
+                        <p>{{ city_weather.feels_like }}</p>
+                    </div>
+                    <div>
+                        <p>Minimal temperature</p>
+                        <p>{{ city_weather.temp_min }}</p>
+                    </div>
+                    <div>
+                        <p>Max temperature</p>
+                        <p>{{ city_weather.temp_max }}</p>
+                    </div>
+                </div>
+                <div class="pressure">
+                    <div class="title">
+                        <h2>Air <i class="fas fa-cloud"></i></h2>
+                        
+                    </div>
+                    <div>
+                        <p>Pressure</p>
+                        <p>{{ city_weather.pressure }} hPa</p>
+                    </div>
+                    <div>
+                        <p>Humidity</p>
+                        <p>{{ city_weather.humidity }} %</p>
+                    </div>
+                </div>
+                <div class="wind">
+                    <div class="title">
+                        <h2>Wind <i class="fas fa-wind"></i></h2>
+                        
+                    </div>
+                    <p>Speed</p>
+                    <p>{{ city_weather.wind_speed }} m/s</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
