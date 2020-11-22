@@ -5,13 +5,13 @@ from .forms import CityForm
 import requests
 
 def index(request):
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=26528d1b356ef903b3b61d714bc2622b'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=<key>'
     city = "London"
 
 
-    gapiPlace = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={} attraction&inputtype=textquery&fields=photos&key=AIzaSyCc_Nihkl8R1QEmLCJ3XRFROwYoB199730"
+    gapiPlace = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={} attraction&inputtype=textquery&fields=photos&key=<key>"
     gapiPlaceReq = requests.get(gapiPlace.format("London")).json()
-    photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference={}&key=AIzaSyCc_Nihkl8R1QEmLCJ3XRFROwYoB199730".format(gapiPlaceReq["candidates"][0]["photos"][0]["photo_reference"])
+    photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference={}&key=<key>".format(gapiPlaceReq["candidates"][0]["photos"][0]["photo_reference"])
     
 
     error = None
@@ -61,9 +61,9 @@ def index(request):
     for city in cities:
         r = requests.get(url.format(city)).json()
 
-        gapiPlace = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={}&inputtype=textquery&fields=photos&key=AIzaSyCc_Nihkl8R1QEmLCJ3XRFROwYoB199730"
+        gapiPlace = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={}&inputtype=textquery&fields=photos&key=<key>"
         gapiPlaceReq = requests.get(gapiPlace.format(city.name)).json()
-        photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference={}&key=AIzaSyCc_Nihkl8R1QEmLCJ3XRFROwYoB199730".format(gapiPlaceReq["candidates"][0]["photos"][0]["photo_reference"])
+        photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference={}&key=<key>".format(gapiPlaceReq["candidates"][0]["photos"][0]["photo_reference"])
 
         city_weather = {
             'city': city.name,
@@ -80,14 +80,14 @@ def index(request):
     return render(request, "weather/city_widget.html", context)
 
 def specific_city(request):
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=26528d1b356ef903b3b61d714bc2622b'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=<key>'
     city = request.GET.get('city', 'Title')
 
     r = requests.get(url.format(city)).json()
 
-    gapiPlace = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={}&inputtype=textquery&fields=photos&key=AIzaSyCc_Nihkl8R1QEmLCJ3XRFROwYoB199730"
+    gapiPlace = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={}&inputtype=textquery&fields=photos&key=<key>"
     gapiPlaceReq = requests.get(gapiPlace.format(city)).json()
-    photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photoreference={}&key=AIzaSyCc_Nihkl8R1QEmLCJ3XRFROwYoB199730".format(gapiPlaceReq["candidates"][0]["photos"][0]["photo_reference"])
+    photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photoreference={}&key=<key>".format(gapiPlaceReq["candidates"][0]["photos"][0]["photo_reference"])
 
     city_weather = {
             'city': city,
